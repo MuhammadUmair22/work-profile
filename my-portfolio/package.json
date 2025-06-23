@@ -12,7 +12,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://MuhammadUmair22.github.io/work-profile",
+  "homepage": "https://muhammadumair22.github.io/work-profile",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
