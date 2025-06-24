@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +10,31 @@ body {
     line-height: 1.6;
     color: #333;
     overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+/* Hide scrollbar initially, show only when scrolling */
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+body.scrolling::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+body.scrolling::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
 }
 
 .portfolio {
@@ -21,12 +47,21 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
     z-index: 1000;
     padding: 1rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 0.75rem 0;
 }
 
 .nav-container {
@@ -292,19 +327,113 @@ body {
     border-radius: 2px;
 }
 
+/* Scroll Animations */
+.about,
+.skills,
+.projects,
+.contact {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.about.animate-in,
+.skills.animate-in,
+.projects.animate-in,
+.contact.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animations for grid items */
+.about-stats .stat,
+.skills-grid .skill-item,
+.projects-grid .project-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-in .about-stats .stat:nth-child(1) {
+    animation: slideInUp 0.6s ease-out 0.1s forwards;
+}
+
+.animate-in .about-stats .stat:nth-child(2) {
+    animation: slideInUp 0.6s ease-out 0.2s forwards;
+}
+
+.animate-in .about-stats .stat:nth-child(3) {
+    animation: slideInUp 0.6s ease-out 0.3s forwards;
+}
+
+.animate-in .skills-grid .skill-item:nth-child(1) {
+    animation: slideInUp 0.6s ease-out 0.1s forwards;
+}
+
+.animate-in .skills-grid .skill-item:nth-child(2) {
+    animation: slideInUp 0.6s ease-out 0.2s forwards;
+}
+
+.animate-in .skills-grid .skill-item:nth-child(3) {
+    animation: slideInUp 0.6s ease-out 0.3s forwards;
+}
+
+.animate-in .skills-grid .skill-item:nth-child(4) {
+    animation: slideInUp 0.6s ease-out 0.4s forwards;
+}
+
+.animate-in .skills-grid .skill-item:nth-child(5) {
+    animation: slideInUp 0.6s ease-out 0.1s forwards;
+}
+
+.animate-in .skills-grid .skill-item:nth-child(6) {
+    animation: slideInUp 0.6s ease-out 0.2s forwards;
+}
+
+.animate-in .skills-grid .skill-item:nth-child(7) {
+    animation: slideInUp 0.6s ease-out 0.3s forwards;
+}
+
+.animate-in .skills-grid .skill-item:nth-child(8) {
+    animation: slideInUp 0.6s ease-out 0.4s forwards;
+}
+
+.animate-in .projects-grid .project-card:nth-child(1) {
+    animation: slideInUp 0.6s ease-out 0.1s forwards;
+}
+
+.animate-in .projects-grid .project-card:nth-child(2) {
+    animation: slideInUp 0.6s ease-out 0.2s forwards;
+}
+
+.animate-in .projects-grid .project-card:nth-child(3) {
+    animation: slideInUp 0.6s ease-out 0.3s forwards;
+}
+
+/* Parallax effect for hero background */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
 /* About Section */
 .about {
     padding: 6rem 0;
     background: white;
-}
-
-.about-text {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
 }
 
-.about-text p {
+.about-text {
     font-size: 1.1rem;
     line-height: 1.8;
     color: #666;
@@ -743,196 +872,225 @@ body {
 
 /* Animations */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 @keyframes slideInLeft {
     from {
-        opacity: 0;
-        transform: translateX(-50px);
+    opacity: 0;
+    transform: translateX(-50px);
     }
-
     to {
-        opacity: 1;
-        transform: translateX(0);
+    opacity: 1;
+    transform: translateX(0);
     }
 }
 
 @keyframes slideInRight {
     from {
-        opacity: 0;
-        transform: translateX(50px);
+    opacity: 0;
+    transform: translateX(50px);
     }
-
     to {
-        opacity: 1;
-        transform: translateX(0);
+    opacity: 1;
+    transform: translateX(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+    opacity: 0;
+    transform: translateY(30px);
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
     }
 }
 
 @keyframes slideInScale {
     from {
-        opacity: 0;
-        transform: scale(0.8);
+    opacity: 0;
+    transform: scale(0.8);
     }
-
     to {
-        opacity: 1;
-        transform: scale(1);
+    opacity: 1;
+    transform: scale(1);
     }
 }
 
 @keyframes wave {
-
-    0%,
-    100% {
-        transform: rotate(0deg);
-    }
-
-    25% {
-        transform: rotate(20deg);
-    }
-
-    75% {
-        transform: rotate(-10deg);
-    }
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(20deg); }
+    75% { transform: rotate(-10deg); }
 }
 
 @keyframes pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 0.7;
-    }
-
-    50% {
-        transform: scale(1.05);
-        opacity: 1;
-    }
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.05); opacity: 1; }
 }
 
 @keyframes skillProgress {
-    from {
-        width: 0%;
+    from { width: 0%; }
+}
+
+@keyframes floatUp {
+    0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
     }
+    100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    }
+}
+
+/* Smooth reveal animation for section titles */
+.section-title {
+    animation: floatUp 0.8s ease-out;
+}
+
+/* Enhanced hover effects */
+.project-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.project-card:hover {
+    transform: translateY(-10px) rotateX(2deg);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Smooth scroll indicator */
+.scroll-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    z-index: 1001;
+}
+
+/* Scroll progress bar animation */
+@keyframes scrollProgress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-menu {
-        position: fixed;
-        top: 80px;
-        right: -100%;
-        width: 100%;
-        height: calc(100vh - 80px);
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding-top: 2rem;
-        transition: right 0.3s ease;
+    position: fixed;
+    top: 80px;
+    right: -100%;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 2rem;
+    transition: right 0.3s ease;
     }
 
     .nav-menu.active {
-        right: 0;
+    right: 0;
     }
 
     .nav-toggle {
-        display: block;
+    display: block;
     }
 
     .hero-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 2rem;
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2rem;
     }
 
     .hero-title {
-        font-size: 2.5rem;
+    font-size: 2.5rem;
     }
 
     .hero-buttons {
-        justify-content: center;
-        flex-wrap: wrap;
+    justify-content: center;
+    flex-wrap: wrap;
     }
 
     .image-container {
-        width: 250px;
-        height: 250px;
+    width: 250px;
+    height: 250px;
     }
 
     .about-stats {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
     }
 
     .skills-grid {
-        grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
     }
 
     .projects-grid {
-        grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
     }
 
     .contact-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
     }
 
     .modal-content {
-        margin: 1rem;
-        max-height: calc(100vh - 2rem);
+    margin: 1rem;
+    max-height: calc(100vh - 2rem);
     }
 
     .image-carousel {
-        height: 250px;
+    height: 250px;
     }
 
     .carousel-btn {
-        width: 40px;
-        height: 40px;
+    width: 40px;
+    height: 40px;
     }
 
     .carousel-btn.prev {
-        left: 0.5rem;
+    left: 0.5rem;
     }
 
     .carousel-btn.next {
-        right: 0.5rem;
+    right: 0.5rem;
     }
 }
 
 @media (max-width: 480px) {
     .nav-container {
-        padding: 0 1rem;
+    padding: 0 1rem;
     }
 
     .container {
-        padding: 0 1rem;
+    padding: 0 1rem;
     }
 
     .hero-container {
-        padding: 0 1rem;
+    padding: 0 1rem;
     }
 
     .hero-title {
-        font-size: 2rem;
+    font-size: 2rem;
     }
 
     .section-title {
-        font-size: 2rem;
+    font-size: 2rem;
     }
 
     .btn {
-        padding: 0.75rem 1.5rem;
+    padding: 0.75rem 1.5rem;
     }
 }
 
@@ -941,20 +1099,7 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+/* Scrollbar timeout effect */
+body.scrolling {
+    scrollbar-color: rgba(102, 126, 234, 0.8) transparent;
 }

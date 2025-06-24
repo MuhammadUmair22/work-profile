@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Download, Mail, Phone, MapPin, Github, Linkedin, Twitter, ExternalLink, Menu, X } from 'lucide-react';
 import './Portfolio.css';
 
@@ -7,12 +7,19 @@ const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: ''
   });
+
+  // Refs for scroll animations
+  const aboutRef = useRef(null);
+  const skillsRef = useRef(null);
+  const projectsRef = useRef(null);
+  const contactRef = useRef(null);
 
   // Sample project data with multiple images
   const projects = [
@@ -72,7 +79,7 @@ const Portfolio = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ 
+      element.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
@@ -84,7 +91,7 @@ const Portfolio = () => {
   // Handle project image navigation
   const nextImage = () => {
     if (selectedProject) {
-      setCurrentImageIndex((prev) => 
+      setCurrentImageIndex((prev) =>
         prev === selectedProject.images.length - 1 ? 0 : prev + 1
       );
     }
@@ -92,7 +99,7 @@ const Portfolio = () => {
 
   const prevImage = () => {
     if (selectedProject) {
-      setCurrentImageIndex((prev) => 
+      setCurrentImageIndex((prev) =>
         prev === 0 ? selectedProject.images.length - 1 : prev - 1
       );
     }
@@ -126,38 +133,75 @@ const Portfolio = () => {
     document.body.removeChild(link);
   };
 
-  // Scroll effect for navbar
+  // Scroll effect for navbar and animations
   useEffect(() => {
+    let scrollTimeout;
+
     const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+
+      // Show scrollbar when scrolling
+      document.body.classList.add('scrolling');
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        document.body.classList.remove('scrolling');
+      }, 1000);
+
+      // Update scrolled state for navbar
+      setScrolled(scrollPosition > 50);
+
+      // Handle section active states
       const sections = ['home', 'about', 'skills', 'projects', 'contact'];
-      const scrollPosition = window.scrollY + 100;
+      const scrollPos = scrollPosition + 100;
 
       sections.forEach((section) => {
         const element = document.getElementById(section);
         if (element) {
           const offsetTop = element.offsetTop;
           const height = element.offsetHeight;
-          
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
+
+          if (scrollPos >= offsetTop && scrollPos < offsetTop + height) {
             setActiveSection(section);
           }
         }
       });
+
+      // Animate sections on scroll
+      const animateOnScroll = (ref, className) => {
+        if (ref.current) {
+          const rect = ref.current.getBoundingClientRect();
+          const isVisible = rect.top < window.innerHeight * 0.8;
+
+          if (isVisible) {
+            ref.current.classList.add(className);
+          }
+        }
+      };
+
+      animateOnScroll(aboutRef, 'animate-in');
+      animateOnScroll(skillsRef, 'animate-in');
+      animateOnScroll(projectsRef, 'animate-in');
+      animateOnScroll(contactRef, 'animate-in');
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+    };
   }, []);
 
   return (
     <div className="portfolio">
       {/* Navigation */}
-      <nav className="navbar">
+      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav-container">
           <div className="nav-logo">
             <span>Portfolio</span>
           </div>
-          
+
           <div className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
             {['home', 'about', 'skills', 'projects', 'contact'].map((item) => (
               <button
@@ -186,7 +230,7 @@ const Portfolio = () => {
               </h1>
               <h2 className="hero-subtitle">Full Stack Developer</h2>
               <p className="hero-description">
-                I create beautiful, responsive web applications with modern technologies. 
+                I create beautiful, responsive web applications with modern technologies.
                 Passionate about clean code, user experience, and innovative solutions.
               </p>
               <div className="hero-buttons">
@@ -212,8 +256,8 @@ const Portfolio = () => {
             </div>
             <div className="hero-image">
               <div className="image-container">
-                <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" 
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
                   alt="John Doe"
                 />
                 <div className="image-glow"></div>
@@ -224,18 +268,18 @@ const Portfolio = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="about">
+      <section id="about" className="about" ref={aboutRef}>
         <div className="container">
           <h2 className="section-title">About Me</h2>
           <div className="about-content">
             <div className="about-text">
               <p>
-                I'm a passionate Full Stack Developer with over 3 years of experience in creating 
+                I'm a passionate Full Stack Developer with over 3 years of experience in creating
                 digital experiences that matter. I specialize in React, Node.js, and modern web technologies.
               </p>
               <p>
-                My journey started with a Computer Science degree, and I've been constantly learning 
-                and adapting to new technologies. I believe in writing clean, maintainable code and 
+                My journey started with a Computer Science degree, and I've been constantly learning
+                and adapting to new technologies. I believe in writing clean, maintainable code and
                 creating user-centered applications.
               </p>
               <div className="about-stats">
@@ -258,7 +302,7 @@ const Portfolio = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="skills">
+      <section id="skills" className="skills" ref={skillsRef}>
         <div className="container">
           <h2 className="section-title">Skills & Technologies</h2>
           <div className="skills-grid">
@@ -269,8 +313,8 @@ const Portfolio = () => {
                   <span className="skill-percentage">{skill.level}%</span>
                 </div>
                 <div className="skill-bar">
-                  <div 
-                    className="skill-progress" 
+                  <div
+                    className="skill-progress"
                     style={{ width: `${skill.level}%` }}
                   ></div>
                 </div>
@@ -281,7 +325,7 @@ const Portfolio = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="projects">
+      <section id="projects" className="projects" ref={projectsRef}>
         <div className="container">
           <h2 className="section-title">Featured Projects</h2>
           <div className="projects-grid">
@@ -290,7 +334,7 @@ const Portfolio = () => {
                 <div className="project-image">
                   <img src={project.images[0]} alt={project.title} />
                   <div className="project-overlay">
-                    <button 
+                    <button
                       className="btn btn-primary"
                       onClick={() => {
                         setSelectedProject(project);
@@ -327,7 +371,7 @@ const Portfolio = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="contact">
+      <section id="contact" className="contact" ref={contactRef}>
         <div className="container">
           <h2 className="section-title">Get In Touch</h2>
           <div className="contact-content">
@@ -402,33 +446,33 @@ const Portfolio = () => {
       {selectedProject && (
         <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button 
+            <button
               className="modal-close"
               onClick={() => setSelectedProject(null)}
             >
               <X size={24} />
             </button>
-            
+
             <div className="modal-header">
               <h3>{selectedProject.title}</h3>
             </div>
-            
+
             <div className="image-carousel">
               <button className="carousel-btn prev" onClick={prevImage}>
                 <ChevronLeft size={24} />
               </button>
-              
+
               <div className="carousel-image">
-                <img 
-                  src={selectedProject.images[currentImageIndex]} 
+                <img
+                  src={selectedProject.images[currentImageIndex]}
                   alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
                 />
               </div>
-              
+
               <button className="carousel-btn next" onClick={nextImage}>
                 <ChevronRight size={24} />
               </button>
-              
+
               <div className="carousel-dots">
                 {selectedProject.images.map((_, index) => (
                   <button
@@ -439,7 +483,7 @@ const Portfolio = () => {
                 ))}
               </div>
             </div>
-            
+
             <div className="modal-body">
               <p>{selectedProject.description}</p>
               <div className="project-technologies">
@@ -469,6 +513,9 @@ const Portfolio = () => {
         </div>
       </footer>
 
+      <style jsx>{`
+        /* CSS will be added in the next artifact */
+      `}</style>
     </div>
   );
 };
