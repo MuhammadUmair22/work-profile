@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Download, Mail, Phone, MapPin, Github, Linkedin, Twitter, ExternalLink, Menu, X } from 'lucide-react';
-import './Portfolio.css';
+import { ChevronLeft, ChevronRight, Download, Mail, Phone, MapPin, Github, Linkedin, MessageCircleMore, ExternalLink, Menu, X } from 'lucide-react';
+import "./Portfolio.css";
+import emailjs from '@emailjs/browser';
+import profileImage from './assets/profile.jpeg';
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -8,6 +10,8 @@ const Portfolio = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showThankYouModal, setShowThankYouModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -66,14 +70,23 @@ const Portfolio = () => {
 
   const skills = [
     { name: "React", level: 90 },
+    { name: "React-Native", level: 90 },
     { name: "JavaScript", level: 85 },
     { name: "Node.js", level: 80 },
     { name: "Python", level: 75 },
-    { name: "MongoDB", level: 70 },
-    { name: "TypeScript", level: 85 },
-    { name: "AWS", level: 65 },
-    { name: "Docker", level: 70 }
+    { name: "FastAPI", level: 80 },
+    { name: "Golang", level: 80 },
+    { name: "OpenAI", level: 80 },
+    { name: "PostgreSQL", level: 90 },
   ];
+
+  // Initialize EmailJS
+  useEffect(() => {
+    // Initialize EmailJS with your public key
+    if (window.emailjs) {
+      window.emailjs.init("FU4zv71zDwIR2cP2z"); // Replace with your EmailJS public key
+    }
+  }, []);
 
   // Smooth scroll function
   const scrollToSection = (sectionId) => {
@@ -105,12 +118,35 @@ const Portfolio = () => {
     }
   };
 
-  // Handle form submission
-  const handleSubmit = () => {
-    // In a real application, you would send this data to your backend
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! I will get back to you soon.');
-    setFormData({ name: '', email: '', subject: '', message: '' });
+  const handleSubmit = async () => {
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      alert('Please fill in all fields');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.send(
+        "service_bo3heh9",
+        "template_sn4t2xm",
+        {
+          name: formData.name,
+          email: formData.email,
+          title: formData.subject,
+          message: formData.message,
+        },
+        "FU4zv71zDwIR2cP2z"
+      );
+
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setShowThankYouModal(true);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Sorry, there was an error sending your message. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Handle form input changes
@@ -226,12 +262,11 @@ const Portfolio = () => {
           <div className="hero-content">
             <div className="hero-text">
               <h1 className="hero-title">
-                <span className="wave">👋</span> Hi, I'm <span className="highlight">John Doe</span>
+                <span className="wave">👋</span> Hi, I'm <span className="highlight">Muhammad Umair</span>
               </h1>
-              <h2 className="hero-subtitle">Full Stack Developer</h2>
+              <h2 className="hero-subtitle">Full Stack Software Engineer</h2>
               <p className="hero-description">
-                I create beautiful, responsive web applications with modern technologies.
-                Passionate about clean code, user experience, and innovative solutions.
+                🚀 I build AI-powered, scalable software solutions with a strong focus on performance and user experience. With extensive experience across product and service domains, I specialize in end-to-end development using Python, Golang, React, and Microsoft Azure. Passionate about AI, clean architecture, and solving real-world problems.
               </p>
               <div className="hero-buttons">
                 <button className="btn btn-primary" onClick={() => scrollToSection('projects')}>
@@ -243,21 +278,25 @@ const Portfolio = () => {
                 </button>
               </div>
               <div className="social-links">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/MuhammadUmair22" target="_blank" rel="noopener noreferrer">
                   <Github size={24} />
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/muhammad-umair0/" target="_blank" rel="noopener noreferrer">
                   <Linkedin size={24} />
                 </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                  <Twitter size={24} />
+                <a
+                  href="https://wa.me/923214634016?text=Hi%2C%20I%20visited%20your%20portfolio%20and%20wanted%20to%20connect!"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MessageCircleMore size={24} />
                 </a>
               </div>
             </div>
             <div className="hero-image">
               <div className="image-container">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
+                  src={profileImage}
                   alt="John Doe"
                 />
                 <div className="image-glow"></div>
@@ -274,8 +313,12 @@ const Portfolio = () => {
           <div className="about-content">
             <div className="about-text">
               <p>
-                I'm a passionate Full Stack Developer with over 3 years of experience in creating
-                digital experiences that matter. I specialize in React, Node.js, and modern web technologies.
+                I'm a passionate Software Engineer with over 2 years of hands-on experience in building scalable,
+                AI-powered applications across both product and service-based industries.
+                I specialize in end-to-end development using technologies like Python (FastAPI),
+                React, and Microsoft Azure. From architecting cloud-based solutions to crafting user-friendly interfaces,
+                I love solving real-world problems with clean, efficient code.
+                I thrive in fast-paced environments, learn quickly, and take full ownership of the work I do—always with a focus on innovation and impact.
               </p>
               <p>
                 My journey started with a Computer Science degree, and I've been constantly learning
@@ -284,15 +327,15 @@ const Portfolio = () => {
               </p>
               <div className="about-stats">
                 <div className="stat">
-                  <span className="stat-number">50+</span>
+                  <span className="stat-number">4+</span>
                   <span className="stat-label">Projects Completed</span>
                 </div>
                 <div className="stat">
-                  <span className="stat-number">3+</span>
+                  <span className="stat-number">2+</span>
                   <span className="stat-label">Years Experience</span>
                 </div>
                 <div className="stat">
-                  <span className="stat-number">30+</span>
+                  <span className="stat-number">4+</span>
                   <span className="stat-label">Happy Clients</span>
                 </div>
               </div>
@@ -381,15 +424,15 @@ const Portfolio = () => {
               <div className="contact-details">
                 <div className="contact-item">
                   <Mail size={20} />
-                  <span>john.doe@example.com</span>
+                  <span>umairashfaq2015@gmail.com</span>
                 </div>
                 <div className="contact-item">
                   <Phone size={20} />
-                  <span>+1 (555) 123-4567</span>
+                  <span>+92 321 4634016</span>
                 </div>
                 <div className="contact-item">
                   <MapPin size={20} />
-                  <span>New York, NY</span>
+                  <span>Lahore, Pakistan</span>
                 </div>
               </div>
             </div>
@@ -434,8 +477,12 @@ const Portfolio = () => {
                   required
                 ></textarea>
               </div>
-              <button onClick={handleSubmit} className="btn btn-primary">
-                Send Message
+              <button
+                onClick={handleSubmit}
+                className={`btn btn-primary ${isSubmitting ? 'submit-button-loading' : ''}`}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
             </div>
           </div>
@@ -506,16 +553,44 @@ const Portfolio = () => {
         </div>
       )}
 
+      {/* Thank You Modal */}
+      {showThankYouModal && (
+        <div className="thank-you-modal-overlay" onClick={() => setShowThankYouModal(false)}>
+          <div className="thank-you-modal" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="thank-you-modal-close"
+              onClick={() => setShowThankYouModal(false)}
+            >
+              <X size={18} />
+            </button>
+
+            <div className="thank-you-icon">
+              <Mail />
+            </div>
+
+            <h3 className="thank-you-title">Thank You!</h3>
+
+            <p className="thank-you-message">
+              Your message has been sent successfully. I'll get back to you as soon as possible!
+            </p>
+
+            <button
+              className="thank-you-button"
+              onClick={() => setShowThankYouModal(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Footer */}
       <footer className="footer">
         <div className="container">
-          <p>&copy; 2024 John Doe. All rights reserved.</p>
+          <p>&copy; 2024 Muhammad Umair. All rights reserved.</p>
         </div>
       </footer>
 
-      <style jsx>{`
-        /* CSS will be added in the next artifact */
-      `}</style>
     </div>
   );
 };
