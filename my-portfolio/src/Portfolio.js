@@ -4,6 +4,11 @@ import "./Portfolio.css";
 import emailjs from '@emailjs/browser';
 import profileImage from './assets/profile.jpeg';
 
+// import projects images
+import tadabbur1 from './assets/Tadabbur AI/1.jpeg';
+import tadabbur2 from './assets/Tadabbur AI/2.jpeg';
+import tadabbur3 from './assets/Tadabbur AI/3.jpeg';
+
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedProject, setSelectedProject] = useState(null);
@@ -29,43 +34,118 @@ const Portfolio = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, payment integration, and admin dashboard.",
-      images: [
-        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop"
+      title: "Tadabbur AI",
+      description:
+        "A cross-platform mobile application that curates Quranic Ayats based on user mood, offering personalized spiritual content with interactive features and user preferences.",
+      images: [tadabbur1, tadabbur2, tadabbur3],
+      checklist: [
+        "User authentication with PostgreSQL",
+        "Quranic Ayat data engineering",
+        "Azure AI Search integration",
+        "Intuitive React Native UI",
+        "Play Store deployment"
       ],
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+      features: [
+        "Secure login/signup",
+        "Audio and text-based mood input",
+        "AI-curated Quranic Ayats based on mood",
+        "Reels-style scrolling of Ayats",
+        "Playback controls (pause/resume)",
+        "Favorites management",
+        "Select from 12 reciters"
+      ],
+      technologies: [
+        "React Native",
+        "FastAPI",
+        "PostgreSQL",
+        "OpenAI",
+        "Azure AI Search"
+      ],
       liveLink: "https://example.com",
       githubLink: "https://github.com/example"
     },
     {
       id: 2,
-      title: "Task Management App",
-      description: "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
+      title: "AI Auto Interviewer",
+      description:
+        "A full-stack web platform that automates candidate interviews using AI, providing real-time evaluation, scoring, and feedback with advanced admin and user dashboards.",
       images: [
         "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop"
       ],
-      technologies: ["Vue.js", "Firebase", "Tailwind CSS"],
+      checklist: [
+        "User authentication via Azure B2C",
+        "SSO integration with Azure AD",
+        "GPT-4o integration for interviews",
+        "Advanced prompt engineering",
+        "Interactive React-based UI",
+        "Robust admin panel",
+        "Multi-language support",
+        "Asynchronous task handling with Celery/Redis"
+      ],
+      features: [
+        "Google/Outlook login",
+        "Audio/video interview formats",
+        "Candidate face recognition",
+        "AI-based scoring and feedback",
+        "Multi-language interviews (e.g., Malay, English)",
+        "Admin dashboard with candidate management",
+        "Candidate profile update requests",
+        "Excel export of candidate data",
+        "Dynamic follow-up questions",
+        "Interview retry mechanism",
+        "Detailed dashboards for users and admins"
+      ],
+      technologies: [
+        "React",
+        "FastAPI",
+        "PostgreSQL",
+        "OpenAI",
+        "Azure B2C",
+        "Celery"
+      ],
       liveLink: "https://example.com",
       githubLink: "https://github.com/example"
     },
     {
       id: 3,
-      title: "Data Visualization Dashboard",
-      description: "Interactive dashboard for data visualization with charts, graphs, and real-time analytics. Built with modern frameworks and APIs.",
+      title: "Finsync AI",
+      description:
+        "An AI-powered platform that recommends optimal global banks based on user-submitted preferences, featuring SharePoint-integrated data filters and natural language chat capabilities.",
       images: [
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=600&fit=crop"
       ],
-      technologies: ["React", "D3.js", "Python", "PostgreSQL"],
+      checklist: [
+        "Excel-based data integration via SharePoint",
+        "Dynamic filtering based on user input",
+        "GPT-4o integration for smart insights",
+        "Context-aware prompt engineering",
+        "Interactive chatbot interface",
+        "Embedded documentation",
+        "Professional-grade UI"
+      ],
+      features: [
+        "Smart questionnaire for bank recommendations",
+        "Detailed results with bank scoring",
+        "Categorization of matched/mismatched banks",
+        "Natural language chatbot with Excel data support",
+        "Thread-based chat history management"
+      ],
+      technologies: [
+        "React",
+        "FastAPI",
+        "Python",
+        "PostgreSQL",
+        "OpenAI",
+        "SharePoint",
+        "Chatbot"
+      ],
       liveLink: "https://example.com",
       githubLink: "https://github.com/example"
-    }
+    },
   ];
 
   const skills = [
@@ -79,6 +159,51 @@ const Portfolio = () => {
     { name: "OpenAI", level: 80 },
     { name: "PostgreSQL", level: 90 },
   ];
+
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const projectsGridRef = useRef(null);
+
+  // Add these functions for carousel navigation
+  const scrollProjects = (direction) => {
+    const container = projectsGridRef.current;
+    if (container) {
+      const scrollAmount = 370; // card width + gap
+      const newScrollLeft = direction === 'left'
+        ? container.scrollLeft - scrollAmount
+        : container.scrollLeft + scrollAmount;
+
+      container.scrollTo({
+        left: newScrollLeft,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const checkScrollButtons = () => {
+    const container = projectsGridRef.current;
+    if (container) {
+      setCanScrollLeft(container.scrollLeft > 0);
+      setCanScrollRight(
+        container.scrollLeft < container.scrollWidth - container.clientWidth
+      );
+    }
+  };
+
+  // Add useEffect to check scroll buttons
+  useEffect(() => {
+    const container = projectsGridRef.current;
+    if (container) {
+      checkScrollButtons();
+      container.addEventListener('scroll', checkScrollButtons);
+      window.addEventListener('resize', checkScrollButtons);
+
+      return () => {
+        container.removeEventListener('scroll', checkScrollButtons);
+        window.removeEventListener('resize', checkScrollButtons);
+      };
+    }
+  }, [projects]);
 
   // Initialize EmailJS
   useEffect(() => {
@@ -371,44 +496,62 @@ const Portfolio = () => {
       <section id="projects" className="projects" ref={projectsRef}>
         <div className="container">
           <h2 className="section-title">Featured Projects</h2>
-          <div className="projects-grid">
-            {projects.map((project) => (
-              <div key={project.id} className="project-card">
-                <div className="project-image">
-                  <img src={project.images[0]} alt={project.title} />
-                  <div className="project-overlay">
-                    <button
-                      className="btn btn-primary"
-                      onClick={() => {
-                        setSelectedProject(project);
-                        setCurrentImageIndex(0);
-                      }}
-                    >
-                      View Details
-                    </button>
+          <div className="projects-container">
+            <button
+              className="carousel-nav-btn prev"
+              onClick={() => scrollProjects('left')}
+              disabled={!canScrollLeft}
+            >
+              <ChevronLeft size={24} />
+            </button>
+
+            <div className="projects-grid" ref={projectsGridRef}>
+              {projects.map((project) => (
+                <div key={project.id} className="project-card">
+                  <div className="project-image">
+                    <img src={project.images[0]} alt={project.title} />
+                    <div className="project-overlay">
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => {
+                          setSelectedProject(project);
+                          setCurrentImageIndex(0);
+                        }}
+                      >
+                        View Details
+                      </button>
+                    </div>
+                  </div>
+                  <div className="project-content">
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="project-description">{project.description}</p>
+                    <div className="project-technologies">
+                      {project.technologies.map((tech, index) => (
+                        <span key={index} className="tech-tag">{tech}</span>
+                      ))}
+                    </div>
+                    <div className="project-links">
+                      <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="project-link">
+                        <ExternalLink size={16} />
+                        Live Demo
+                      </a>
+                      <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="project-link">
+                        <Github size={16} />
+                        Code
+                      </a>
+                    </div>
                   </div>
                 </div>
-                <div className="project-content">
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-description">{project.description}</p>
-                  <div className="project-technologies">
-                    {project.technologies.map((tech, index) => (
-                      <span key={index} className="tech-tag">{tech}</span>
-                    ))}
-                  </div>
-                  <div className="project-links">
-                    <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="project-link">
-                      <ExternalLink size={16} />
-                      Live Demo
-                    </a>
-                    <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="project-link">
-                      <Github size={16} />
-                      Code
-                    </a>
-                  </div>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            <button
+              className="carousel-nav-btn next"
+              onClick={() => scrollProjects('right')}
+              disabled={!canScrollRight}
+            >
+              <ChevronRight size={24} />
+            </button>
           </div>
         </div>
       </section>
@@ -510,10 +653,16 @@ const Portfolio = () => {
               </button>
 
               <div className="carousel-image">
-                <img
-                  src={selectedProject.images[currentImageIndex]}
-                  alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
-                />
+                <a
+                  href={selectedProject.images[currentImageIndex]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={selectedProject.images[currentImageIndex]}
+                    alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
+                  />
+                </a>
               </div>
 
               <button className="carousel-btn next" onClick={nextImage}>
@@ -533,11 +682,27 @@ const Portfolio = () => {
 
             <div className="modal-body">
               <p>{selectedProject.description}</p>
-              <div className="project-technologies">
+              <div>
+                <div className="features-title">Overview</div>
+                <ul className='project-checklist'>
+                  {selectedProject.checklist.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <div className="features-title">Features</div>
+                <ul className="project-features">
+                  {selectedProject.features.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              {/* <div className="project-technologies">
                 {selectedProject.technologies.map((tech, index) => (
                   <span key={index} className="tech-tag">{tech}</span>
                 ))}
-              </div>
+              </div> */}
               <div className="project-links">
                 <a href={selectedProject.liveLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
                   <ExternalLink size={16} />
