@@ -429,58 +429,59 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 
 /* Skills Section */
 .skills {
-    padding: 6rem 0;
+    padding: 5rem 0;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
 }
 
 .skill-item {
     background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
 }
 
 .skill-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
 .skill-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .skill-name {
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #333;
 }
 
 .skill-percentage {
     font-weight: 700;
+    font-size: 0.9rem;
     color: #667eea;
 }
 
 .skill-bar {
-    height: 8px;
+    height: 6px;
     background: #e0e7ff;
-    border-radius: 4px;
+    border-radius: 3px;
     overflow: hidden;
 }
 
 .skill-progress {
     height: 100%;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 4px;
+    border-radius: 3px;
     transition: width 1s ease-in-out;
     animation: skillProgress 2s ease-in-out;
 }
@@ -529,37 +530,39 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(102, 126, 234, 0.9);
+    background: rgba(102, 126, 234, 0.95);
     color: white;
     border: none;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 10;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.carousel-nav-btn:hover {
+.carousel-nav-btn:hover:not(:disabled) {
     background: rgba(102, 126, 234, 1);
-    transform: translateY(-50%) scale(1.1);
+    transform: translateY(-50%) scale(1.15);
+    box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
 }
 
 .carousel-nav-btn.prev {
-    left: -25px;
+    left: -60px;
 }
 
 .carousel-nav-btn.next {
-    right: -25px;
+    right: -60px;
 }
 
 .carousel-nav-btn:disabled {
-    opacity: 0.5;
+    opacity: 0.3;
     cursor: not-allowed;
+    background: rgba(102, 126, 234, 0.5);
 }
 
 .carousel-nav-btn:disabled:hover {
@@ -1136,6 +1139,14 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+
+    .carousel-nav-btn.prev {
+        left: -20px;
+    }
+
+    .carousel-nav-btn.next {
+        right: -20px;
     }
 
     .contact-content {

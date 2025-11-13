@@ -149,7 +149,7 @@ const Portfolio = () => {
         "FastAPI",
         "Python",
         "PostgreSQL",
-        "OpenAI (GPT-4o, Embeddings)",
+        "OpenAI",
         "LangChain",
         "SharePoint API",
         "RAG Pipeline",
@@ -827,7 +827,7 @@ const Portfolio = () => {
       {/* Footer */}
       <footer className="footer">
         <div className="container">
-          <p>&copy; 2024 Muhammad Umair. All rights reserved.</p>
+          <p>&copy; 2025 Muhammad Umair. All rights reserved.</p>
         </div>
       </footer>
 
