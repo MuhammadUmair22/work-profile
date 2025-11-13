@@ -317,6 +317,7 @@ body::-webkit-scrollbar {
 
 /* Scroll Animations */
 .about,
+.experience,
 .skills,
 .projects,
 .contact {
@@ -326,6 +327,7 @@ body::-webkit-scrollbar {
 }
 
 .about.animate-in,
+.experience.animate-in,
 .skills.animate-in,
 .projects.animate-in,
 .contact.animate-in {
@@ -335,6 +337,7 @@ body::-webkit-scrollbar {
 
 /* Staggered animations for grid items */
 .about-stats .stat,
+.experience-timeline .experience-item,
 .skills-grid .skill-item,
 .projects-grid .project-card {
     opacity: 0;
@@ -344,6 +347,7 @@ body::-webkit-scrollbar {
 
 /* Dynamic staggered animation - will be applied via JavaScript */
 .animate-in .about-stats .stat.fade-in,
+.animate-in .experience-timeline .experience-item.fade-in,
 .animate-in .skills-grid .skill-item.fade-in,
 .animate-in .projects-grid .project-card.fade-in {
     animation: slideInUp 0.6s ease-out forwards;
@@ -418,10 +422,129 @@ body::-webkit-scrollbar {
     font-weight: 500;
 }
 
+/* Experience Section */
+.experience {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.experience-timeline {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.experience-item {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(30, 58, 138, 0.08);
+    border: 1px solid rgba(30, 58, 138, 0.08);
+    transition: all 0.3s ease;
+}
+
+.experience-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(30, 58, 138, 0.12);
+    border-color: rgba(217, 119, 6, 0.2);
+}
+
+.experience-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(30, 58, 138, 0.1);
+}
+
+.experience-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.experience-company {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #d97706;
+    margin-bottom: 0.5rem;
+}
+
+.experience-duration {
+    display: inline-block;
+    font-size: 0.95rem;
+    color: #64748b;
+    background: rgba(30, 58, 138, 0.05);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.experience-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.experience-category {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.experience-category::before {
+    content: '';
+    width: 4px;
+    height: 24px;
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    border-radius: 2px;
+}
+
+.experience-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.experience-details li {
+    display: flex;
+    align-items: flex-start;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #475569;
+    padding-left: 0;
+}
+
+.experience-details li::before {
+    content: "▸";
+    color: #d97706;
+    font-size: 1.2rem;
+    margin-right: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.experience-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
 /* Skills Section */
 .skills {
     padding: 5rem 0;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    background: white;
 }
 
 .skills-grid {
@@ -480,10 +603,9 @@ body::-webkit-scrollbar {
 }
 
 /* Projects Section */
-/* Projects Section */
 .projects {
     padding: 6rem 0;
-    background: white;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 }
 
 .projects-container {
@@ -1127,6 +1249,22 @@ body::-webkit-scrollbar {
     .about-stats {
         grid-template-columns: 1fr;
         gap: 1rem;
+    }
+
+    .experience-item {
+        padding: 1.5rem;
+    }
+
+    .experience-title {
+        font-size: 1.5rem;
+    }
+
+    .experience-company {
+        font-size: 1.1rem;
+    }
+
+    .experience-category {
+        font-size: 1.1rem;
     }
 
     .skills-grid {

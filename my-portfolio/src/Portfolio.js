@@ -45,6 +45,7 @@ const Portfolio = () => {
 
   // Refs for scroll animations
   const aboutRef = useRef(null);
+  const experienceRef = useRef(null);
   const skillsRef = useRef(null);
   const projectsRef = useRef(null);
   const contactRef = useRef(null);
@@ -367,7 +368,7 @@ const Portfolio = () => {
       setScrolled(scrollPosition > 50);
 
       // Handle section active states
-      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+      const sections = ['home', 'about', 'experience', 'skills', 'projects', 'contact'];
       const scrollPos = scrollPosition + 100;
 
       sections.forEach((section) => {
@@ -406,6 +407,7 @@ const Portfolio = () => {
       };
 
       animateOnScroll(aboutRef, 'animate-in', '.stat');
+      animateOnScroll(experienceRef, 'animate-in', '.experience-item');
       animateOnScroll(skillsRef, 'animate-in', '.skill-item');
       animateOnScroll(projectsRef, 'animate-in', '.project-card');
       animateOnScroll(contactRef, 'animate-in');
@@ -429,7 +431,7 @@ const Portfolio = () => {
           </div>
 
           <div className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
-            {['home', 'about', 'skills', 'projects', 'contact'].map((item) => (
+            {['home', 'about', 'experience', 'skills', 'projects', 'contact'].map((item) => (
               <button
                 key={item}
                 className={`nav-link ${activeSection === item ? 'active' : ''}`}
@@ -527,6 +529,60 @@ const Portfolio = () => {
                 <div className="stat">
                   <span className="stat-number">4+</span>
                   <span className="stat-label">Happy Clients</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="experience" ref={experienceRef}>
+        <div className="container">
+          <h2 className="section-title">Professional Experience</h2>
+          <div className="experience-timeline">
+            <div className="experience-item">
+              <div className="experience-header">
+                <h3 className="experience-title">Software Engineer</h3>
+                <span className="experience-company">Mcloud (Product-Based Company)</span>
+                <span className="experience-duration">Full-time</span>
+              </div>
+              <div className="experience-content">
+                <h4 className="experience-category">Backend Development (Golang)</h4>
+                <ul className="experience-details">
+                  <li>Architected modular Golang packages to enhance code maintainability and reusability</li>
+                  <li>Optimized database operations by integrating pgx and kpgx connection pools with auto-unmarshalling, reducing runtime and memory usage</li>
+                  <li>Implemented microservice architecture with a robust file server for efficient local storage and retrieval</li>
+                  <li>Developed an AWS S3-like service using CephFS integration for production-grade scalable storage</li>
+                  <li>Built internal SDK to streamline interactions with private APIs, improving developer productivity</li>
+                  <li>Designed and optimized PostgreSQL schemas, wrote efficient queries, and managed complex migrations and transactions</li>
+                  <li>Contributed to IAM system development, implementing user invitation features and enhancing security</li>
+                  <li>Implemented comprehensive audit log functionality across multiple Mcloud products for accountability and compliance</li>
+                  <li>Developed robust notification system to enhance user engagement and real-time communication</li>
+                  <li>Developed RESTful APIs ensuring high performance, low latency, and handling of edge cases for robustness</li>
+                </ul>
+
+                <h4 className="experience-category">Full Stack Development (HRMS System)</h4>
+                <ul className="experience-details">
+                  <li>Built HRMS system from scratch as part of a collaborative team effort</li>
+                  <li>Designed and implemented attendance module schema ensuring data integrity and efficient querying</li>
+                  <li>Developed filtration system for the entire Mcloud platform</li>
+                  <li>Created generic and reusable React/TypeScript components improving code maintainability</li>
+                  <li>Engaged in bug fixing, problem-solving, and manual testing for quality assurance</li>
+                  <li>Collaborated with cross-functional teams using Git/GitHub maintaining high code quality standards</li>
+                </ul>
+
+                <h4 className="experience-category">Key Technologies</h4>
+                <div className="experience-technologies">
+                  <span className="tech-tag">Golang</span>
+                  <span className="tech-tag">PostgreSQL</span>
+                  <span className="tech-tag">pgx/kpgx</span>
+                  <span className="tech-tag">CephFS</span>
+                  <span className="tech-tag">React</span>
+                  <span className="tech-tag">TypeScript</span>
+                  <span className="tech-tag">Microservices</span>
+                  <span className="tech-tag">RESTful APIs</span>
+                  <span className="tech-tag">IAM</span>
                 </div>
               </div>
             </div>
