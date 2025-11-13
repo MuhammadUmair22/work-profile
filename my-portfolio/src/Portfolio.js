@@ -23,6 +23,11 @@ import aiAuto5 from './assets/Auto Interviewer/5.png';
 import aiAuto6 from './assets/Auto Interviewer/6.png';
 import aiAuto7 from './assets/Auto Interviewer/7.png';
 
+// import benjitron images
+import benjitron1 from './assets/Benjitron-9000/1.png';
+import benjitron2 from './assets/Benjitron-9000/2.png';
+import benjitron3 from './assets/Benjitron-9000/3.png';
+
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedProject, setSelectedProject] = useState(null);
@@ -122,36 +127,86 @@ const Portfolio = () => {
       id: 3,
       title: "Finsync AI",
       description:
-        "An AI-powered platform that recommends optimal global banks based on user-submitted preferences, featuring SharePoint-integrated data filters and natural language chat capabilities.",
+        "An AI-powered platform that recommends optimal global banks based on user-submitted preferences, featuring SharePoint-integrated data filters, contextual retrieval, and natural language chat capabilities.",
       images: [finsync1, finsync2, finsync3],
       checklist: [
         "Excel-based data integration via SharePoint",
         "Dynamic filtering based on user input",
-        "GPT-4o integration for smart insights",
-        "Context-aware prompt engineering",
-        "Interactive chatbot interface",
-        "Embedded documentation",
-        "Professional-grade UI"
+        "GPT-4o integration for intelligent recommendations",
+        "Retrieval-Augmented Generation (RAG) pipeline for contextual insights",
+        "Interactive chatbot interface with threaded memory",
+        "Professional-grade UI and data visualization"
       ],
       features: [
         "Smart questionnaire for bank recommendations",
-        "Detailed results with bank scoring",
-        "Categorization of matched/mismatched banks",
-        "Natural language chatbot with Excel data support",
-        "Thread-based chat history management"
+        "Detailed results with multi-criteria bank scoring",
+        "Categorization of matched and mismatched banks",
+        "Natural language chatbot powered by RAG and embeddings",
+        "Thread-based chat history management with context recall"
       ],
       technologies: [
         "React",
         "FastAPI",
         "Python",
         "PostgreSQL",
-        "OpenAI",
-        "SharePoint",
+        "OpenAI (GPT-4o, Embeddings)",
+        "LangChain",
+        "SharePoint API",
+        "RAG Pipeline",
         "Chatbot"
       ],
       liveLink: "https://example.com",
       githubLink: "https://github.com/example"
     },
+    {
+      id: 4,
+      title: "Benjitron-9000 🤖",
+      description:
+        "Benjitron-9000 is an AI-powered automation and communication platform built for public adjusting firms. It unifies Trello, Google Workspace, Telegram, and voice systems to intelligently manage claims, automate outreach, and provide natural-language control over firm operations. Featuring GPT-4o intelligence, LangGraph workflows, and Azure-triggered automations, Benjitron ensures seamless claim tracking, document handling, and compliance with human-in-the-loop oversight.",
+      images: [benjitron1, benjitron2, benjitron3],
+      checklist: [
+        "Telegram-based conversational interface with voice and text (via Whisper)",
+        "LangChain + LangGraph orchestration for contextual claim workflows",
+        "Azure Functions for event-driven data ingestion and automation triggers",
+        "Trello, Gmail, Google Sheets, and Calendar integrations",
+        "Dynamic appraisal and mediation readiness logic",
+        "Automated voice, SMS, and email communication via Twilio and Vapi",
+        "AI-generated invoices and litigation update requests",
+        "Human-in-the-loop approval system for sensitive actions",
+        "PGVector-powered semantic search and retrieval from structured data",
+        "Secure audit logging and performance analytics dashboard"
+      ],
+      features: [
+        "Conversational command center on Telegram for claim insights and actions",
+        "AI-assisted drafting of client emails, follow-ups, and reminders",
+        "Outbound AI voice calls with live transfer, voicemail fallback, and logging",
+        "Event-driven automation via Azure Functions for data synchronization",
+        "Embeddings-based retrieval for claim context and communication history",
+        "Smart appraisal and mediation readiness detection across Trello + Gmail data",
+        "Invoice generation and litigation update automation",
+        "Human review and confirmation for settlement and invoice actions",
+        "Team productivity tracking and task-based time estimation",
+        "Secure audit logs with explainable AI interactions"
+      ],
+      technologies: [
+        "React",
+        "FastAPI",
+        "Python",
+        "PostgreSQL",
+        "PGVector",
+        "LangChain",
+        "LangGraph",
+        "OpenAI (GPT-4o, Embeddings, Whisper)",
+        "Twilio",
+        "Vapi",
+        "Azure Functions",
+        "Telegram Bot API",
+        "Google Workspace APIs",
+        "Trello API"
+      ],
+      liveLink: "https://example.com",
+      githubLink: "https://github.com/example"
+    }
   ];
 
   const skills = [
@@ -164,6 +219,9 @@ const Portfolio = () => {
     { name: "Golang", level: 80 },
     { name: "OpenAI", level: 80 },
     { name: "PostgreSQL", level: 90 },
+    { name: "Vector Database", level: 90 },
+    { name: "Langraph Workflows", level: 90 },
+    { name: "RAG Workflows", level: 90 },
   ];
 
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -333,21 +391,32 @@ const Portfolio = () => {
         }
       });
 
-      // Animate sections on scroll
-      const animateOnScroll = (ref, className) => {
+      // Animate sections on scroll with dynamic staggered children
+      const animateOnScroll = (ref, className, childSelector) => {
         if (ref.current) {
           const rect = ref.current.getBoundingClientRect();
           const isVisible = rect.top < window.innerHeight * 0.8;
 
-          if (isVisible) {
+          if (isVisible && !ref.current.classList.contains(className)) {
             ref.current.classList.add(className);
+
+            // Apply staggered animation to children
+            if (childSelector) {
+              const children = ref.current.querySelectorAll(childSelector);
+              children.forEach((child, index) => {
+                setTimeout(() => {
+                  child.classList.add('fade-in');
+                  child.style.animationDelay = `${(index % 4) * 0.1}s`;
+                }, 0);
+              });
+            }
           }
         }
       };
 
-      animateOnScroll(aboutRef, 'animate-in');
-      animateOnScroll(skillsRef, 'animate-in');
-      animateOnScroll(projectsRef, 'animate-in');
+      animateOnScroll(aboutRef, 'animate-in', '.stat');
+      animateOnScroll(skillsRef, 'animate-in', '.skill-item');
+      animateOnScroll(projectsRef, 'animate-in', '.project-card');
       animateOnScroll(contactRef, 'animate-in');
     };
 
