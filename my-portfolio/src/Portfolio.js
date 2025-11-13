@@ -360,17 +360,8 @@ const Portfolio = () => {
 
   // Scroll effect for navbar and animations
   useEffect(() => {
-    let scrollTimeout;
-
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-
-      // Show scrollbar when scrolling
-      document.body.classList.add('scrolling');
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        document.body.classList.remove('scrolling');
-      }, 1000);
 
       // Update scrolled state for navbar
       setScrolled(scrollPosition > 50);
@@ -425,7 +416,6 @@ const Portfolio = () => {
     // Cleanup
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      clearTimeout(scrollTimeout);
     };
   }, []);
 
@@ -462,7 +452,7 @@ const Portfolio = () => {
           <div className="hero-content">
             <div className="hero-text">
               <h1 className="hero-title">
-                <span className="wave">👋</span> Hi, I'm <span className="highlight">Muhammad Umair</span>
+                Hi, I'm <span className="highlight">Muhammad Umair</span>
               </h1>
               <h2 className="hero-subtitle">Full Stack Software Engineer</h2>
               <p className="hero-description">

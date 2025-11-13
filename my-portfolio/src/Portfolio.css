@@ -7,33 +7,15 @@
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
-    color: #333;
+    color: #1a1a2e;
     overflow-x: hidden;
-    scrollbar-width: thin;
-    scrollbar-color: transparent transparent;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
 }
 
-/* Hide scrollbar initially, show only when scrolling */
+/* Hide scrollbar completely for all browsers */
 body::-webkit-scrollbar {
-    width: 8px;
-}
-
-body::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-body::-webkit-scrollbar-thumb {
-    background: transparent;
-    border-radius: 4px;
-    transition: background 0.3s ease;
-}
-
-body.scrolling::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-body.scrolling::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+    display: none; /* Hide scrollbar for Chrome/Safari/Edge */
 }
 
 .portfolio {
@@ -46,11 +28,12 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     z-index: 1000;
     padding: 1rem 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(30, 58, 138, 0.1);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform: translateY(0);
 }
@@ -58,8 +41,9 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 .navbar.scrolled {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(30, 58, 138, 0.15);
+    box-shadow: 0 4px 20px rgba(30, 58, 138, 0.08);
     padding: 0.75rem 0;
 }
 
@@ -75,7 +59,7 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 .nav-logo span {
     font-size: 1.5rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -100,11 +84,11 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 }
 
 .nav-link:hover {
-    color: #667eea;
+    color: #1e3a8a;
 }
 
 .nav-link.active {
-    color: #667eea;
+    color: #1e3a8a;
 }
 
 .nav-link.active::after {
@@ -114,7 +98,7 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
     border-radius: 1px;
 }
 
@@ -129,7 +113,7 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     position: relative;
     overflow: hidden;
 }
@@ -169,6 +153,7 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
     font-weight: 700;
     margin-bottom: 1rem;
     line-height: 1.2;
+    letter-spacing: -0.02em;
 }
 
 .wave {
@@ -177,7 +162,7 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 }
 
 .highlight {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -186,13 +171,13 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 .hero-subtitle {
     font-size: 1.5rem;
     font-weight: 500;
-    color: #666;
+    color: #475569;
     margin-bottom: 1.5rem;
 }
 
 .hero-description {
     font-size: 1.1rem;
-    color: #666;
+    color: #64748b;
     margin-bottom: 2rem;
     line-height: 1.7;
 }
@@ -218,24 +203,25 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
     color: white;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
+    background: linear-gradient(135deg, #1e40af 0%, #1e293b 100%);
 }
 
 .btn-outline {
     background: transparent;
-    color: #667eea;
-    border: 2px solid #667eea;
+    color: #1e3a8a;
+    border: 2px solid #1e3a8a;
 }
 
 .btn-outline:hover {
-    background: #667eea;
+    background: #1e3a8a;
     color: white;
     transform: translateY(-2px);
 }
@@ -249,19 +235,20 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: rgba(102, 126, 234, 0.1);
+    background: rgba(30, 58, 138, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #667eea;
+    color: #1e3a8a;
     transition: all 0.3s ease;
     text-decoration: none;
 }
 
 .social-links a:hover {
-    background: #667eea;
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
     color: white;
     transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3);
 }
 
 .hero-image {
@@ -293,7 +280,7 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
     left: -10px;
     right: -10px;
     bottom: -10px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
     border-radius: 50%;
     z-index: 1;
     animation: pulse 3s ease-in-out infinite;
@@ -312,6 +299,8 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
     text-align: center;
     margin-bottom: 3rem;
     position: relative;
+    letter-spacing: -0.02em;
+    color: #0f172a;
 }
 
 .section-title::after {
@@ -322,7 +311,7 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
     border-radius: 2px;
 }
 
@@ -386,7 +375,7 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 .about-text {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #666;
+    color: #64748b;
     margin-bottom: 2rem;
 }
 
@@ -400,21 +389,23 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 .stat {
     text-align: center;
     padding: 2rem;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     border-radius: 20px;
     transition: all 0.3s ease;
+    border: 1px solid rgba(30, 58, 138, 0.1);
 }
 
 .stat:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(30, 58, 138, 0.15);
+    border-color: rgba(217, 119, 6, 0.3);
 }
 
 .stat-number {
     display: block;
     font-size: 2.5rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -423,14 +414,14 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 
 .stat-label {
     font-size: 1rem;
-    color: #666;
+    color: #64748b;
     font-weight: 500;
 }
 
 /* Skills Section */
 .skills {
     padding: 5rem 0;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 }
 
 .skills-grid {
@@ -443,13 +434,15 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
     background: white;
     padding: 1.25rem 1.5rem;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.06);
     transition: all 0.3s ease;
+    border: 1px solid rgba(30, 58, 138, 0.08);
 }
 
 .skill-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.1);
+    border-color: rgba(217, 119, 6, 0.2);
 }
 
 .skill-info {
@@ -462,25 +455,25 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 .skill-name {
     font-weight: 600;
     font-size: 1rem;
-    color: #333;
+    color: #1a1a2e;
 }
 
 .skill-percentage {
     font-weight: 700;
     font-size: 0.9rem;
-    color: #667eea;
+    color: #d97706;
 }
 
 .skill-bar {
     height: 6px;
-    background: #e0e7ff;
+    background: #e2e8f0;
     border-radius: 3px;
     overflow: hidden;
 }
 
 .skill-progress {
     height: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
     border-radius: 3px;
     transition: width 1s ease-in-out;
     animation: skillProgress 2s ease-in-out;
@@ -516,7 +509,7 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
     background: white;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(30, 58, 138, 0.08);
     transition: all 0.3s ease;
     position: relative;
     min-width: 350px;
@@ -524,13 +517,14 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
+    border: 1px solid rgba(30, 58, 138, 0.08);
 }
 
 .carousel-nav-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(102, 126, 234, 0.95);
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
     color: white;
     border: none;
     border-radius: 50%;
@@ -542,13 +536,13 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 10;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 20px rgba(30, 58, 138, 0.3);
 }
 
 .carousel-nav-btn:hover:not(:disabled) {
-    background: rgba(102, 126, 234, 1);
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
     transform: translateY(-50%) scale(1.15);
-    box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 25px rgba(217, 119, 6, 0.4);
 }
 
 .carousel-nav-btn.prev {
@@ -562,7 +556,7 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 .carousel-nav-btn:disabled {
     opacity: 0.3;
     cursor: not-allowed;
-    background: rgba(102, 126, 234, 0.5);
+    background: rgba(30, 58, 138, 0.4);
 }
 
 .carousel-nav-btn:disabled:hover {
@@ -571,7 +565,8 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 
 .project-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 40px rgba(30, 58, 138, 0.12);
+    border-color: rgba(217, 119, 6, 0.2);
 }
 
 .project-image {
@@ -593,7 +588,7 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(102, 126, 234, 0.9);
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -617,11 +612,11 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
     font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: #333;
+    color: #1a1a2e;
 }
 
 .project-description {
-    color: #666;
+    color: #64748b;
     line-height: 1.6;
     margin-bottom: 1.5rem;
 }
@@ -643,7 +638,7 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 .project-checklist li::before {
     content: "✔️";
     /* Tickmark */
-    color: green;
+    color: #059669;
     margin-right: 10px;
     font-size: 14px;
 }
@@ -671,8 +666,8 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 
 .project-features li::before {
     content: "•";
-    color: #667eea;
-    /* Blue accent */
+    color: #d97706;
+    /* Gold accent */
     font-size: 28px;
     margin-right: 10px;
     line-height: 1;
@@ -686,7 +681,7 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 }
 
 .tech-tag {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
     color: white;
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
@@ -703,21 +698,21 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: #667eea;
+    color: #1e3a8a;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
 }
 
 .project-link:hover {
-    color: #764ba2;
+    color: #d97706;
     transform: translateX(5px);
 }
 
 /* Contact Section */
 .contact {
     padding: 6rem 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
     color: white;
 }
 
@@ -929,10 +924,11 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
 
 /* Footer */
 .footer {
-    background: #333;
-    color: white;
+    background: #0f172a;
+    color: #cbd5e1;
     padding: 2rem 0;
     text-align: center;
+    border-top: 1px solid rgba(217, 119, 6, 0.2);
 }
 
 /* Animations */
@@ -1065,7 +1061,7 @@ body.scrolling::-webkit-scrollbar-thumb:hover {
     left: 0;
     width: 100%;
     height: 3px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
     transform-origin: left;
     transform: scaleX(0);
     transition: transform 0.3s ease;
@@ -1208,10 +1204,7 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Scrollbar timeout effect */
-body.scrolling {
-    scrollbar-color: rgba(102, 126, 234, 0.8) transparent;
-}
+/* Scrollbar is completely hidden - no timeout effect needed */
 
 .thank-you-modal-overlay {
     position: fixed;
@@ -1229,7 +1222,7 @@ body.scrolling {
 }
 
 .thank-you-modal {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
     border-radius: 20px;
     padding: 40px;
     max-width: 500px;
