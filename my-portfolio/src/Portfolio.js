@@ -4,10 +4,24 @@ import "./Portfolio.css";
 import emailjs from '@emailjs/browser';
 import profileImage from './assets/profile.jpeg';
 
-// import projects images
+// import tadabbur projects images
 import tadabbur1 from './assets/Tadabbur AI/1.jpeg';
 import tadabbur2 from './assets/Tadabbur AI/2.jpeg';
 import tadabbur3 from './assets/Tadabbur AI/3.jpeg';
+
+// import theseus finsync images
+import finsync1 from './assets/Theseus Finsync/1.png';
+import finsync2 from './assets/Theseus Finsync/2.png';
+import finsync3 from './assets/Theseus Finsync/3.png';
+
+// import ai auto interviewer images
+import aiAuto1 from './assets/Auto Interviewer/1.png';
+import aiAuto2 from './assets/Auto Interviewer/2.png';
+import aiAuto3 from './assets/Auto Interviewer/3.png';
+import aiAuto4 from './assets/Auto Interviewer/4.png';
+import aiAuto5 from './assets/Auto Interviewer/5.png';
+import aiAuto6 from './assets/Auto Interviewer/6.png';
+import aiAuto7 from './assets/Auto Interviewer/7.png';
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -69,11 +83,7 @@ const Portfolio = () => {
       title: "AI Auto Interviewer",
       description:
         "A full-stack web platform that automates candidate interviews using AI, providing real-time evaluation, scoring, and feedback with advanced admin and user dashboards.",
-      images: [
-        "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop"
-      ],
+      images: [aiAuto1, aiAuto2, aiAuto3, aiAuto4, aiAuto5, aiAuto6, aiAuto7],
       checklist: [
         "User authentication via Azure B2C",
         "SSO integration with Azure AD",
@@ -113,11 +123,7 @@ const Portfolio = () => {
       title: "Finsync AI",
       description:
         "An AI-powered platform that recommends optimal global banks based on user-submitted preferences, featuring SharePoint-integrated data filters and natural language chat capabilities.",
-      images: [
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=600&fit=crop"
-      ],
+      images: [finsync1, finsync2, finsync3],
       checklist: [
         "Excel-based data integration via SharePoint",
         "Dynamic filtering based on user input",
