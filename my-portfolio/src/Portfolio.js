@@ -28,6 +28,13 @@ import benjitron1 from './assets/Benjitron-9000/1.png';
 import benjitron2 from './assets/Benjitron-9000/2.png';
 import benjitron3 from './assets/Benjitron-9000/3.png';
 
+// import veriqs images
+import veriqs1 from './assets/Veriqs/1.png';
+import veriqs2 from './assets/Veriqs/2.png';
+import veriqs3 from './assets/Veriqs/3.png';
+import veriqs4 from './assets/Veriqs/4.png';
+import veriqs5 from './assets/Veriqs/5.png';
+
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedProject, setSelectedProject] = useState(null);
@@ -161,7 +168,7 @@ const Portfolio = () => {
     },
     {
       id: 4,
-      title: "Benjitron-9000 🤖",
+      title: "Benjitron-9000",
       description:
         "Benjitron-9000 is an AI-powered automation and communication platform built for public adjusting firms. It unifies Trello, Google Workspace, Telegram, and voice systems to intelligently manage claims, automate outreach, and provide natural-language control over firm operations. Featuring GPT-4o intelligence, LangGraph workflows, and Azure-triggered automations, Benjitron ensures seamless claim tracking, document handling, and compliance with human-in-the-loop oversight.",
       images: [benjitron1, benjitron2, benjitron3],
@@ -204,6 +211,55 @@ const Portfolio = () => {
         "Telegram Bot API",
         "Google Workspace APIs",
         "Trello API"
+      ],
+      liveLink: "https://example.com",
+      githubLink: "https://github.com/example"
+    },
+    {
+      id: 5,
+      title: "Veriqs",
+      description:
+        "Veriqs is an AI-powered due diligence platform designed for comprehensive background checks and risk analysis in Brazil and Mexico. It aggregates public data from court records and judicial databases, using AI-driven analysis to deliver detailed risk assessments. The platform helps users make informed decisions about personal interactions while ensuring full compliance with Brazilian data protection laws (LGPD). Features include multi-parameter search, instant risk classification, detailed PDF reports, and a complete credit/subscription payment system.",
+      images: [veriqs1, veriqs2, veriqs3, veriqs4, veriqs5],
+      checklist: [
+        "Multi-parameter search by CPF, full name, or phone number",
+        "AI-powered instant risk classification (Low/Medium/High)",
+        "Comprehensive PDF report generation with criminal records and judicial data",
+        "Google OAuth 2.0 authentication with JWT session management",
+        "Stripe integration for credit purchases and unlimited subscriptions",
+        "Credit-based wallet system for search transactions",
+        "Admin dashboard for user management and payment monitoring",
+        "Multi-language support (English, Spanish, Portuguese)",
+        "IP-based geolocation tracking for audit purposes",
+        "Full LGPD compliance with Brazilian data protection laws"
+      ],
+      features: [
+        "Instant background verification with AI-driven risk assessment",
+        "Detailed judicial involvement and court case analysis",
+        "Search history tracking with geolocation data",
+        "Credit wallet management for pay-per-search model",
+        "Unlimited subscription option for frequent users",
+        "Admin controls for user banning, refunds, and role management",
+        "Transaction history with Stripe payment tracking",
+        "Mobile-responsive design with intuitive navigation",
+        "Localized safety tips for Brazil and Mexico regions",
+        "Comprehensive audit logging and compliance reporting"
+      ],
+      technologies: [
+        "React 19",
+        "TypeScript",
+        "Vite",
+        "FastAPI",
+        "Python",
+        "PostgreSQL",
+        "SQLAlchemy",
+        "SQLModel",
+        "Stripe",
+        "Google OAuth 2.0",
+        "JWT",
+        "i18next",
+        "ReportLab",
+        "Axios"
       ],
       liveLink: "https://example.com",
       githubLink: "https://github.com/example"
@@ -519,15 +575,15 @@ const Portfolio = () => {
               </p>
               <div className="about-stats">
                 <div className="stat">
-                  <span className="stat-number">4+</span>
+                  <span className="stat-number">5+</span>
                   <span className="stat-label">Projects Completed</span>
                 </div>
                 <div className="stat">
-                  <span className="stat-number">2+</span>
+                  <span className="stat-number">2.5+</span>
                   <span className="stat-label">Years Experience</span>
                 </div>
                 <div className="stat">
-                  <span className="stat-number">4+</span>
+                  <span className="stat-number">6+</span>
                   <span className="stat-label">Happy Clients</span>
                 </div>
               </div>
