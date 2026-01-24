@@ -263,6 +263,60 @@ const Portfolio = () => {
       ],
       liveLink: "https://example.com",
       githubLink: "https://github.com/example"
+    },
+    {
+      id: 6,
+      title: "BDE (Business Data Extraction)",
+      description:
+        "BDE is an AI-powered document intelligence platform designed for business due diligence and acquisition analysis. It processes multiple document types, connects to QuickBooks for financial data, and uses a sophisticated 5-stage scoring pipeline to evaluate companies across 8 pillars. Features include RAG-based chat, real-time WebSocket updates, multi-tenant architecture, and comprehensive acquisition recommendations with valuation guidance.",
+      images: [],
+      checklist: [
+        "Multi-format document processing (PDF, DOCX, XLSX, PPTX, audio, images)",
+        "Azure OpenAI integration (GPT-4o-mini, Embeddings, Whisper)",
+        "5-stage BDE scoring pipeline with 8 evaluation pillars",
+        "QuickBooks OAuth integration for financial data sync",
+        "RAG-powered chat with semantic search (pgvector)",
+        "Real-time WebSocket progress tracking via Redis pub/sub",
+        "Multi-tenant architecture with RBAC",
+        "Azure Functions for async document processing",
+        "Deterministic scoring algorithm with evidence traceability",
+        "Automated acquisition recommendations with valuation range"
+      ],
+      features: [
+        "Upload and process PDF, Word, Excel, PowerPoint, images, and audio files",
+        "AI-powered document chunking with embedding generation",
+        "RAG chat interface with source citations",
+        "QuickBooks data synchronization and ingestion",
+        "8-pillar company evaluation (Financial, GTM, Customer, Product, Ops, Leadership, Ecosystem, Service/Software)",
+        "Red/Yellow/Green flag detection with severity ratings",
+        "Overall BDE score (0-100) with valuation multiple guidance",
+        "Executive acquisition recommendation with 100-day plan",
+        "Real-time scoring progress via WebSocket",
+        "Multi-tenant isolation with role-based access control",
+        "Customizable prompt templates",
+        "Complete audit trail with evidence chunk linking"
+      ],
+      technologies: [
+        "React 19",
+        "TypeScript",
+        "Vite",
+        "FastAPI",
+        "Python",
+        "PostgreSQL",
+        "pgvector",
+        "SQLModel",
+        "Azure OpenAI (GPT-4o-mini, Embeddings, Whisper)",
+        "Azure Blob Storage",
+        "Azure Queue Storage",
+        "Azure Functions",
+        "Redis",
+        "WebSockets",
+        "Azure AD (MSAL)",
+        "QuickBooks API",
+        "Alembic"
+      ],
+      liveLink: "https://example.com",
+      githubLink: "https://github.com/example"
     }
   ];
 
@@ -406,10 +460,10 @@ const Portfolio = () => {
   // Download resume function
   const downloadResume = () => {
     // Replace with your actual resume URL
-    const resumeUrl = 'https://example.com/your-resume.pdf';
+    const resumeUrl = 'https://rxresu.me/umairashfaq2015/muhammad-umair-software-engineer';
     const link = document.createElement('a');
     link.href = resumeUrl;
-    link.download = 'John_Doe_Resume.pdf';
+    link.download = 'Muhammad_Umair_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -575,7 +629,7 @@ const Portfolio = () => {
               </p>
               <div className="about-stats">
                 <div className="stat">
-                  <span className="stat-number">5+</span>
+                  <span className="stat-number">6+</span>
                   <span className="stat-label">Projects Completed</span>
                 </div>
                 <div className="stat">
@@ -583,7 +637,7 @@ const Portfolio = () => {
                   <span className="stat-label">Years Experience</span>
                 </div>
                 <div className="stat">
-                  <span className="stat-number">6+</span>
+                  <span className="stat-number">10+</span>
                   <span className="stat-label">Happy Clients</span>
                 </div>
               </div>
@@ -929,7 +983,7 @@ const Portfolio = () => {
       {/* Footer */}
       <footer className="footer">
         <div className="container">
-          <p>&copy; 2025 Muhammad Umair. All rights reserved.</p>
+          <p>&copy; 2026 Muhammad Umair. All rights reserved.</p>
         </div>
       </footer>
 
