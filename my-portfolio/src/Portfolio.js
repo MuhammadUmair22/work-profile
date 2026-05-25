@@ -35,6 +35,21 @@ import veriqs3 from './assets/Veriqs/3.png';
 import veriqs4 from './assets/Veriqs/4.png';
 import veriqs5 from './assets/Veriqs/5.png';
 
+// import bde images
+import bde1 from './assets/BDE/1.png';
+import bde2 from './assets/BDE/2.png';
+import bde3 from './assets/BDE/3.png';
+import bde4 from './assets/BDE/4.png';
+import bde5 from './assets/BDE/5.png';
+import bde6 from './assets/BDE/6.png';
+
+// import ovie images
+import ovie1 from './assets/Ovie/1.png';
+import ovie2 from './assets/Ovie/2.png';
+import ovie3 from './assets/Ovie/3.png';
+import ovie4 from './assets/Ovie/4.png';
+import ovie5 from './assets/Ovie/5.png';
+
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedProject, setSelectedProject] = useState(null);
@@ -269,7 +284,7 @@ const Portfolio = () => {
       title: "BDE (Business Data Extraction)",
       description:
         "BDE is an AI-powered document intelligence platform designed for business due diligence and acquisition analysis. It processes multiple document types, connects to QuickBooks for financial data, and uses a sophisticated 5-stage scoring pipeline to evaluate companies across 8 pillars. Features include RAG-based chat, real-time WebSocket updates, multi-tenant architecture, and comprehensive acquisition recommendations with valuation guidance.",
-      images: [],
+      images: [bde1, bde2, bde3, bde4, bde5, bde6],
       checklist: [
         "Multi-format document processing (PDF, DOCX, XLSX, PPTX, audio, images)",
         "Azure OpenAI integration (GPT-4o-mini, Embeddings, Whisper)",
@@ -314,6 +329,64 @@ const Portfolio = () => {
         "Azure AD (MSAL)",
         "QuickBooks API",
         "Alembic"
+      ],
+      liveLink: "https://example.com",
+      githubLink: "https://github.com/example"
+    },
+    {
+      id: 7,
+      title: "Ovie AI Platform",
+      description:
+        "Ovie is an AI-powered business intelligence platform that combines a conversational assistant, proactive daily reports via Microsoft Teams, and multi-connector data integration (GA4, GSC, CrUX, Azure DevOps). Built on LangGraph for intelligent routing, it acts as an Optimizely specialist and co-pilot across analytics, SEO, performance, and DevOps — guiding teams through five-level troubleshooting, evidence gathering, correlation analysis, and ticket creation with full multi-tenant isolation and GDPR-compliant infrastructure.",
+      images: [ovie1, ovie2, ovie3, ovie4, ovie5],
+      checklist: [
+        "LangGraph-based intelligent routing and multi-node orchestration",
+        "Conversational AI assistant with topic management and back-references",
+        "Proactive daily reports delivered via Microsoft Teams",
+        "Multi-connector integration (GA4, GSC, CrUX, Azure DevOps)",
+        "Dual-corpus RAG retrieval with pgvector semantic search",
+        "Five-level troubleshooting pipeline with evidence correlation",
+        "Three-gate validation architecture (static, single-turn, multi-turn)",
+        "Multi-tenant architecture with organization-scoped RBAC",
+        "DLP, audit logging, and GDPR-compliant data residency (EU-West)",
+        "LangSmith observability for traces, evaluations, and experiments"
+      ],
+      features: [
+        "Conversational assistant with natural-language intent classification",
+        "Proactive Teams reports with daily and weekly highlights",
+        "Optimizely expert mode with direct admin guidance",
+        "Co-pilot mode for analytics, SEO, performance, and DevOps",
+        "Automated incident response workflow with ticket creation",
+        "Evidence-based troubleshooting with root-cause correlation",
+        "Dynamic prompt assembly based on configured connectors",
+        "Conversation memory with topic boundary detection",
+        "Date-range clarification for ambiguous time comparisons",
+        "Data validation with holiday detection and anomaly flagging",
+        "Admin dashboard for connectors, users, and organization config",
+        "Real-time chat with streaming responses and tool execution traces"
+      ],
+      technologies: [
+        "Next.js 15",
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS",
+        "FastAPI",
+        "Python",
+        "LangGraph",
+        "LangChain",
+        "PostgreSQL",
+        "pgvector",
+        "Redis",
+        "Vertex AI (Gemini 2.0 Flash)",
+        "Google Cloud Run",
+        "Google Cloud SQL",
+        "Alembic",
+        "Microsoft Teams API",
+        "Azure DevOps API",
+        "Google Analytics 4 API",
+        "Google Search Console API",
+        "Chrome UX Report API",
+        "LangSmith"
       ],
       liveLink: "https://example.com",
       githubLink: "https://github.com/example"
@@ -633,7 +706,7 @@ const Portfolio = () => {
                   <span className="stat-label">Projects Completed</span>
                 </div>
                 <div className="stat">
-                  <span className="stat-number">2.5+</span>
+                  <span className="stat-number">3.0+</span>
                   <span className="stat-label">Years Experience</span>
                 </div>
                 <div className="stat">
