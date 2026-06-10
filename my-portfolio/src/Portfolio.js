@@ -102,9 +102,7 @@ const Portfolio = () => {
         "PostgreSQL",
         "OpenAI",
         "Azure AI Search"
-      ],
-      liveLink: "https://example.com",
-      githubLink: "https://github.com/example"
+      ]
     },
     {
       id: 2,
@@ -142,9 +140,7 @@ const Portfolio = () => {
         "OpenAI",
         "Azure B2C",
         "Celery"
-      ],
-      liveLink: "https://example.com",
-      githubLink: "https://github.com/example"
+      ]
     },
     {
       id: 3,
@@ -177,9 +173,7 @@ const Portfolio = () => {
         "SharePoint API",
         "RAG Pipeline",
         "Chatbot"
-      ],
-      liveLink: "https://example.com",
-      githubLink: "https://github.com/example"
+      ]
     },
     {
       id: 4,
@@ -226,9 +220,7 @@ const Portfolio = () => {
         "Telegram Bot API",
         "Google Workspace APIs",
         "Trello API"
-      ],
-      liveLink: "https://example.com",
-      githubLink: "https://github.com/example"
+      ]
     },
     {
       id: 5,
@@ -275,9 +267,7 @@ const Portfolio = () => {
         "i18next",
         "ReportLab",
         "Axios"
-      ],
-      liveLink: "https://example.com",
-      githubLink: "https://github.com/example"
+      ]
     },
     {
       id: 6,
@@ -329,9 +319,7 @@ const Portfolio = () => {
         "Azure AD (MSAL)",
         "QuickBooks API",
         "Alembic"
-      ],
-      liveLink: "https://example.com",
-      githubLink: "https://github.com/example"
+      ]
     },
     {
       id: 7,
@@ -387,9 +375,7 @@ const Portfolio = () => {
         "Google Search Console API",
         "Chrome UX Report API",
         "LangSmith"
-      ],
-      liveLink: "https://example.com",
-      githubLink: "https://github.com/example"
+      ]
     }
   ];
 
@@ -533,10 +519,10 @@ const Portfolio = () => {
   // Download resume function
   const downloadResume = () => {
     // Replace with your actual resume URL
-    const resumeUrl = 'https://rxresu.me/umairashfaq2015/muhammad-umair-software-engineer';
+    const resumeUrl = 'https://rxresu.me/umairashfaq2015/muhammad-umair-senior-software-engineer';
     const link = document.createElement('a');
     link.href = resumeUrl;
-    link.download = 'Muhammad_Umair_Resume.pdf';
+    link.download = 'Muhammad_Umair_Senior_Software_Engineer_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -639,7 +625,7 @@ const Portfolio = () => {
               <h1 className="hero-title">
                 Hi, I'm <span className="highlight">Muhammad Umair</span>
               </h1>
-              <h2 className="hero-subtitle">Full Stack Software Engineer</h2>
+              <h2 className="hero-subtitle">Full Stack Senior Software Engineer</h2>
               <p className="hero-description">
                 🚀 I build AI-powered, scalable software solutions with a strong focus on performance and user experience. With extensive experience across product and service domains, I specialize in end-to-end development using Python, Golang, React, and Microsoft Azure. Passionate about AI, clean architecture, and solving real-world problems.
               </p>
@@ -688,9 +674,9 @@ const Portfolio = () => {
           <div className="about-content">
             <div className="about-text">
               <p>
-                I'm a passionate Software Engineer with over 2 years of hands-on experience in building scalable,
+                I'm a passionate Senior Software Engineer with 3+ years of hands-on experience in building scalable,
                 AI-powered applications across both product and service-based industries.
-                I specialize in end-to-end development using technologies like Python (FastAPI),
+                I specialize in end-to-end development using technologies like Python (FastAPI), Golang,
                 React, and Microsoft Azure. From architecting cloud-based solutions to crafting user-friendly interfaces,
                 I love solving real-world problems with clean, efficient code.
                 I thrive in fast-paced environments, learn quickly, and take full ownership of the work I do—always with a focus on innovation and impact.
@@ -702,7 +688,7 @@ const Portfolio = () => {
               </p>
               <div className="about-stats">
                 <div className="stat">
-                  <span className="stat-number">6+</span>
+                  <span className="stat-number">7+</span>
                   <span className="stat-label">Projects Completed</span>
                 </div>
                 <div className="stat">
@@ -710,7 +696,7 @@ const Portfolio = () => {
                   <span className="stat-label">Years Experience</span>
                 </div>
                 <div className="stat">
-                  <span className="stat-number">10+</span>
+                  <span className="stat-number">15+</span>
                   <span className="stat-label">Happy Clients</span>
                 </div>
               </div>
@@ -726,9 +712,75 @@ const Portfolio = () => {
           <div className="experience-timeline">
             <div className="experience-item">
               <div className="experience-header">
+                <h3 className="experience-title">Software Consultant</h3>
+                <span className="experience-company">10 Pearls (Service-Based Company)</span>
+                <span className="experience-duration">May 2026 - Present</span>
+              </div>
+              <div className="experience-content">
+                <h4 className="experience-category">Backend Development (Golang Microservices)</h4>
+                <ul className="experience-details">
+                  <li>Architected an OpenAPI-first Go microservice (Gin, Bun ORM, PostgreSQL) with 45 REST endpoints across 7 domains, using oapi-codegen to generate type-safe server stubs, request/response types, and a Go client SDK consumed by downstream services</li>
+                  <li>Built a vendor-integration pipeline with webhook callbacks (GoTranscript), JSON-schema validation, transcript transformation, and a polling background worker that streams files to Google Cloud Storage and syncs records across services</li>
+                  <li>Designed a versioned, JSONB-backed scoring system over 14 domain models, managed via incremental SQL migrations and tuned PostgreSQL connection pooling for service-to-service workloads</li>
+                  <li>Implemented comprehensive test coverage with 88 unit tests running against a real PostgreSQL database, plus schema-validation fixtures covering valid and invalid transcript payloads</li>
+                </ul>
+
+                <h4 className="experience-category">Key Technologies</h4>
+                <div className="experience-technologies">
+                  <span className="tech-tag">Golang</span>
+                  <span className="tech-tag">Gin</span>
+                  <span className="tech-tag">Bun ORM</span>
+                  <span className="tech-tag">PostgreSQL</span>
+                  <span className="tech-tag">oapi-codegen</span>
+                  <span className="tech-tag">OpenAPI</span>
+                  <span className="tech-tag">Google Cloud Storage</span>
+                  <span className="tech-tag">JSONB</span>
+                  <span className="tech-tag">Microservices</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="experience-item">
+              <div className="experience-header">
                 <h3 className="experience-title">Software Engineer</h3>
-                <span className="experience-company">Mcloud (Product-Based Company)</span>
-                <span className="experience-duration">Full-time</span>
+                <span className="experience-company">Kcube.ai (Service-Based Company)</span>
+                <span className="experience-duration">January 2025 - Present</span>
+              </div>
+              <div className="experience-content">
+                <h4 className="experience-category">AI & Full Stack Development</h4>
+                <ul className="experience-details">
+                  <li>Built AI-powered solutions for global clients using LLM integrations, RAG pipelines, LangChain, LangGraph workflow orchestration, and multi-stage scoring pipelines with deterministic evaluation algorithms</li>
+                  <li>Developed full-stack applications with React, React Native, FastAPI, and PostgreSQL with PGVector for semantic search, multi-tenant architecture, and real-time WebSocket communication</li>
+                  <li>Integrated OpenAI APIs (GPT-4o, Embeddings, Whisper) for intelligent automation, interviews, content curation, document analysis, metric extraction, and acquisition recommendations</li>
+                  <li>Implemented Azure services (B2C, AD, Functions, AI Search, Blob Storage, Queue Storage) for authentication, SSO, event-driven architecture, and async document processing</li>
+                  <li>Built payment systems with Stripe, voice/SMS with Twilio/Vapi, QuickBooks financial data integration, and various third-party API integrations</li>
+                </ul>
+
+                <h4 className="experience-category">Key Technologies</h4>
+                <div className="experience-technologies">
+                  <span className="tech-tag">React</span>
+                  <span className="tech-tag">React Native</span>
+                  <span className="tech-tag">FastAPI</span>
+                  <span className="tech-tag">Python</span>
+                  <span className="tech-tag">PostgreSQL</span>
+                  <span className="tech-tag">PGVector</span>
+                  <span className="tech-tag">LangChain</span>
+                  <span className="tech-tag">LangGraph</span>
+                  <span className="tech-tag">OpenAI (GPT-4o, Embeddings, Whisper)</span>
+                  <span className="tech-tag">Azure</span>
+                  <span className="tech-tag">Stripe</span>
+                  <span className="tech-tag">Twilio</span>
+                  <span className="tech-tag">Vapi</span>
+                  <span className="tech-tag">WebSockets</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="experience-item">
+              <div className="experience-header">
+                <h3 className="experience-title">Software Engineer I</h3>
+                <span className="experience-company">Mslm (Product-Based Company)</span>
+                <span className="experience-duration">August 2023 - December 2024</span>
               </div>
               <div className="experience-content">
                 <h4 className="experience-category">Backend Development (Golang)</h4>
@@ -740,7 +792,7 @@ const Portfolio = () => {
                   <li>Built internal SDK to streamline interactions with private APIs, improving developer productivity</li>
                   <li>Designed and optimized PostgreSQL schemas, wrote efficient queries, and managed complex migrations and transactions</li>
                   <li>Contributed to IAM system development, implementing user invitation features and enhancing security</li>
-                  <li>Implemented comprehensive audit log functionality across multiple Mcloud products for accountability and compliance</li>
+                  <li>Implemented comprehensive audit log functionality across multiple Mslm products for accountability and compliance</li>
                   <li>Developed robust notification system to enhance user engagement and real-time communication</li>
                   <li>Developed RESTful APIs ensuring high performance, low latency, and handling of edge cases for robustness</li>
                 </ul>
@@ -749,7 +801,7 @@ const Portfolio = () => {
                 <ul className="experience-details">
                   <li>Built HRMS system from scratch as part of a collaborative team effort</li>
                   <li>Designed and implemented attendance module schema ensuring data integrity and efficient querying</li>
-                  <li>Developed filtration system for the entire Mcloud platform</li>
+                  <li>Developed filtration system for the entire Mslm platform</li>
                   <li>Created generic and reusable React/TypeScript components improving code maintainability</li>
                   <li>Engaged in bug fixing, problem-solving, and manual testing for quality assurance</li>
                   <li>Collaborated with cross-functional teams using Git/GitHub maintaining high code quality standards</li>
@@ -834,16 +886,22 @@ const Portfolio = () => {
                         <span key={index} className="tech-tag">{tech}</span>
                       ))}
                     </div>
-                    <div className="project-links">
-                      <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="project-link">
-                        <ExternalLink size={16} />
-                        Live Demo
-                      </a>
-                      <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="project-link">
-                        <Github size={16} />
-                        Code
-                      </a>
-                    </div>
+                    {(project.liveLink || project.githubLink) && (
+                      <div className="project-links">
+                        {project.liveLink && (
+                          <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="project-link">
+                            <ExternalLink size={16} />
+                            Live Demo
+                          </a>
+                        )}
+                        {project.githubLink && (
+                          <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="project-link">
+                            <Github size={16} />
+                            Code
+                          </a>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -1007,16 +1065,22 @@ const Portfolio = () => {
                   <span key={index} className="tech-tag">{tech}</span>
                 ))}
               </div> */}
-              <div className="project-links">
-                <a href={selectedProject.liveLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                  <ExternalLink size={16} />
-                  Live Demo
-                </a>
-                <a href={selectedProject.githubLink} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
-                  <Github size={16} />
-                  View Code
-                </a>
-              </div>
+              {(selectedProject.liveLink || selectedProject.githubLink) && (
+                <div className="project-links">
+                  {selectedProject.liveLink && (
+                    <a href={selectedProject.liveLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                      <ExternalLink size={16} />
+                      Live Demo
+                    </a>
+                  )}
+                  {selectedProject.githubLink && (
+                    <a href={selectedProject.githubLink} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+                      <Github size={16} />
+                      View Code
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
