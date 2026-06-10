@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-padding-top: 80px;
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
@@ -113,9 +117,14 @@ body::-webkit-scrollbar {
     min-height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    scroll-margin-top: 80px;
+    padding-top: 100px;
+    padding-bottom: 2rem;
+    margin-top: 0;
 }
 
 .hero::before {
@@ -911,9 +920,15 @@ body::-webkit-scrollbar {
     align-items: start;
 }
 
+.contact .section-title {
+    color: white;
+}
+
 .contact-info h3 {
     font-size: 2rem;
     margin-bottom: 1rem;
+    color: white;
+    font-weight: 700;
 }
 
 .contact-info p {

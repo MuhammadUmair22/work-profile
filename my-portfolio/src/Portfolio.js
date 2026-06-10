@@ -744,7 +744,7 @@ const Portfolio = () => {
 
             <div className="experience-item">
               <div className="experience-header">
-                <h3 className="experience-title">Software Engineer</h3>
+                <h3 className="experience-title">Senior Software Engineer</h3>
                 <span className="experience-company">Kcube.ai (Service-Based Company)</span>
                 <span className="experience-duration">January 2025 - Present</span>
               </div>
