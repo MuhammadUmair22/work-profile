@@ -319,6 +319,7 @@ body::-webkit-scrollbar {
 .about,
 .experience,
 .skills,
+.awards,
 .projects,
 .contact {
     opacity: 0;
@@ -329,6 +330,7 @@ body::-webkit-scrollbar {
 .about.animate-in,
 .experience.animate-in,
 .skills.animate-in,
+.awards.animate-in,
 .projects.animate-in,
 .contact.animate-in {
     opacity: 1;
@@ -339,6 +341,7 @@ body::-webkit-scrollbar {
 .about-stats .stat,
 .experience-timeline .experience-item,
 .skills-grid .skill-item,
+.awards-grid .award-item,
 .projects-grid .project-card {
     opacity: 0;
     transform: translateY(30px);
@@ -349,6 +352,7 @@ body::-webkit-scrollbar {
 .animate-in .about-stats .stat.fade-in,
 .animate-in .experience-timeline .experience-item.fade-in,
 .animate-in .skills-grid .skill-item.fade-in,
+.animate-in .awards-grid .award-item.fade-in,
 .animate-in .projects-grid .project-card.fade-in {
     animation: slideInUp 0.6s ease-out forwards;
 }
@@ -600,6 +604,68 @@ body::-webkit-scrollbar {
     border-radius: 3px;
     transition: width 1s ease-in-out;
     animation: skillProgress 2s ease-in-out;
+}
+
+/* Awards Section */
+.awards {
+    padding: 6rem 0;
+    background: white;
+}
+
+.awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.award-item {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(30, 58, 138, 0.1);
+    transition: all 0.3s ease;
+}
+
+.award-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(30, 58, 138, 0.12);
+    border-color: rgba(217, 119, 6, 0.3);
+}
+
+.award-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.award-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0;
+}
+
+.award-date {
+    font-size: 0.85rem;
+    color: #d97706;
+    font-weight: 600;
+    white-space: nowrap;
+    margin-left: 1rem;
+}
+
+.award-company {
+    font-size: 0.95rem;
+    color: #64748b;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.award-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #4b5563;
+    margin: 0;
 }
 
 /* Projects Section */

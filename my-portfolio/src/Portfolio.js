@@ -69,6 +69,7 @@ const Portfolio = () => {
   const aboutRef = useRef(null);
   const experienceRef = useRef(null);
   const skillsRef = useRef(null);
+  const awardsRef = useRef(null);
   const projectsRef = useRef(null);
   const contactRef = useRef(null);
 
@@ -537,7 +538,7 @@ const Portfolio = () => {
       setScrolled(scrollPosition > 50);
 
       // Handle section active states
-      const sections = ['home', 'about', 'experience', 'skills', 'projects', 'contact'];
+      const sections = ['home', 'about', 'experience', 'skills', 'awards', 'projects', 'contact'];
       const scrollPos = scrollPosition + 100;
 
       sections.forEach((section) => {
@@ -578,6 +579,7 @@ const Portfolio = () => {
       animateOnScroll(aboutRef, 'animate-in', '.stat');
       animateOnScroll(experienceRef, 'animate-in', '.experience-item');
       animateOnScroll(skillsRef, 'animate-in', '.skill-item');
+      animateOnScroll(awardsRef, 'animate-in', '.award-item');
       animateOnScroll(projectsRef, 'animate-in', '.project-card');
       animateOnScroll(contactRef, 'animate-in');
     };
@@ -600,7 +602,7 @@ const Portfolio = () => {
           </div>
 
           <div className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
-            {['home', 'about', 'experience', 'skills', 'projects', 'contact'].map((item) => (
+            {['home', 'about', 'experience', 'skills', 'awards', 'projects', 'contact'].map((item) => (
               <button
                 key={item}
                 className={`nav-link ${activeSection === item ? 'active' : ''}`}
@@ -844,6 +846,36 @@ const Portfolio = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Awards Section */}
+      <section id="awards" className="awards" ref={awardsRef}>
+        <div className="container">
+          <h2 className="section-title">Awards & Recognition</h2>
+          <div className="awards-grid">
+            <div className="award-item">
+              <div className="award-header">
+                <h3 className="award-title">Employee of the Year</h3>
+                <span className="award-date">January 2026</span>
+              </div>
+              <div className="award-company">Kcube.ai</div>
+              <p className="award-description">
+                Awarded Employee of the Year in recognition of successfully leading and delivering high-impact projects with outstanding results.
+              </p>
+            </div>
+
+            <div className="award-item">
+              <div className="award-header">
+                <h3 className="award-title">1st Position Holder - FYP Competition</h3>
+                <span className="award-date">July 2023</span>
+              </div>
+              <div className="award-company">Comsats Institute of Information Technology</div>
+              <p className="award-description">
+                Our AI-focused product secured the prestigious first prize, showcasing its innovative edge and excellence among 150+ projects represented in Comsats FYP Competition.
+              </p>
+            </div>
           </div>
         </div>
       </section>
