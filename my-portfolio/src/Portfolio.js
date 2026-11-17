@@ -49,6 +49,20 @@ import ovie2 from './assets/Ovie/2.png';
 import ovie3 from './assets/Ovie/3.png';
 import ovie4 from './assets/Ovie/4.png';
 import ovie5 from './assets/Ovie/5.png';
+
+// import TerraIQ images
+import terraiq1 from './assets/TerraIQ/1.png';
+import terraiq2 from './assets/TerraIQ/2.png';
+import terraiq3 from './assets/TerraIQ/3.png';
+import terraiq4 from './assets/TerraIQ/4.png';
+import terraiq5 from './assets/TerraIQ/5.png';
+
+// import SolesRX images
+import solesrx1 from './assets/Solesrx/1.png';
+import solesrx2 from './assets/Solesrx/2.png';
+import solesrx3 from './assets/Solesrx/3.png';
+import solesrx4 from './assets/Solesrx/4.png';
+import solesrx5 from './assets/Solesrx/5.png';
 import { createRequire } from 'module';
 import { createRequire } from 'module';
 
@@ -383,6 +397,110 @@ const Portfolio = () => {
         "Google Search Console API",
         "Chrome UX Report API",
         "LangSmith"
+      ]
+    },
+    {
+      id: 8,
+      title: "TerraIQ",
+      description:
+        "TerraIQ is a land-prospecting platform for real estate developers in Quebec's Lanaudière region. It combines cadastral lots, municipal assessment rolls, zoning bylaws, and environmental constraints into a single explainable score per lot, so teams can quickly find buildable, under-used parcels. Zoning grids are extracted from municipal PDFs with citations to the source document and page, and a deterministic scoring engine makes the final decision, with AI used only for extraction and explanation.",
+      images: [terraiq1, terraiq2, terraiq3, terraiq4, terraiq5],
+      checklist: [
+        "Ingestion pipeline for cadastre, assessment roll, zoning polygons, and environmental layers",
+        "Parsers that extract zoning grids from per-zone bylaw PDFs, with document and page citations",
+        "Deterministic scoring engine with versioned weight sets and full provenance",
+        "Constructability and underutilization rules, hard exclusions, and PPCMOI score floors",
+        "Per-municipality parking rules resolved from bylaws, with a default fallback",
+        "Interactive map with vector tiles and score-band colouring",
+        "Invite-only multi-tenant accounts with centralized role-based access control",
+        "Background jobs with BullMQ for scoring and ingestion runs",
+        "Fallbacks for every client-owned service (basemap, Gemini, storage) so the app runs without keys",
+        "CI with typecheck, lint, unit, and e2e tests across the TypeScript and Python packages",
+        "Production deployment on AWS EC2 with containerized services and S3 file storage"
+      ],
+      features: [
+        "One 0-100 score per lot with green, yellow, and red bands",
+        "Score breakdown by constructability, vacancy, density, zoning, frontage, area, neighbourhood, and environmental penalty",
+        "Parcel sheet with assessment data, zoning provisions, and source citations",
+        "Search and filtering across lots and municipalities",
+        "Saved shortlists for tracking prospects",
+        "Street View and AI-written parcel summaries",
+        "Thumbs-up/down feedback on scores with a satisfaction dashboard for admins",
+        "Admin panel for users, invitations, and data versions",
+        "Fully French interface",
+        "Live pilots in Terrebonne, Repentigny, and Joliette",
+        "Cloud-hosted production environment on AWS EC2"
+      ],
+      technologies: [
+        "Next.js 16",
+        "React",
+        "TypeScript",
+        "Tailwind CSS 4",
+        "deck.gl",
+        "NestJS",
+        "Kysely",
+        "FastAPI",
+        "Python",
+        "PostgreSQL",
+        "PostGIS",
+        "Martin (vector tiles)",
+        "Redis",
+        "BullMQ",
+        "Gemini",
+        "Docker",
+        "Caddy",
+        "AWS EC2",
+        "Amazon S3",
+        "Vitest",
+        "Pytest"
+      ]
+    },
+    {
+      id: 9,
+      title: "SolesRX Medplum (Insurance Reimbursement Workflow)",
+      description:
+        "SolesRX Medplum is an insurance reimbursement workflow that lets patients get insurance, Medicare or FSA/HSA approval before a custom 3D-printed insole ships. Patient intake, an ops queue for staff, and doctor paperwork run on a self-hosted Medplum server that stores all patient health information. The existing app, Strapi backend and Shopify checkout stay untouched and receive only a case ID and an approval status. Self-hosted Documenso collects e-signatures on prefilled authorization forms, and a fail-closed ship-gate holds medical orders from production until approval.",
+      images: [solesrx1, solesrx2, solesrx3, solesrx4, solesrx5],
+      checklist: [
+        "Self-hosted Medplum 'Medical Vault' holding all PHI, with Strapi storing only a case ID and an approval status",
+        "FHIR-based intake Questionnaire and a validated intake Bot that creates one Case per order",
+        "Role-based Access Policies for ops staff, the intake client and Bot identities",
+        "Ops queue with statuses (Received, Eligibility Check, SOCP Sent, Approved, Denied, Needs Info), notes and notifications",
+        "Automatic prefilled authorization packets (PDF) for Medicare diabetic shoes/insoles and custom orthotics pathways",
+        "Self-hosted Documenso e-signature server with a webhook receiver that files signed PDFs, certificates and audit logs on the Case",
+        "Signed, retrying webhooks from Medplum to Strapi on every status change",
+        "Ship-Gate on the Shopify side that fails closed until the case is approved or self-pay is chosen",
+        "Google Cloud deployment with a dedicated VM per service, Caddy HTTPS and restricted deploy accounts",
+        "CI/CD pipeline with GitHub Actions running tests on pull requests and auto-deploying on merge to main",
+        "Unit and integration test suites against a real local Medplum server"
+      ],
+      features: [
+        "Patient intake with insurance card photo, OCR, coverage choice (insurer / self-pay / FSA-HSA), uploads and consent",
+        "Clear 'not a guarantee of payment' notice before submission",
+        "One-click 'Set status' and 'Generate forms' screens for ops staff, with bulk actions",
+        "Prefilled SOCP, Foot Evaluation, Shoe and Ortho AOB, and Supply Receipt forms generated per patient pathway",
+        "'Send for signature' screen that routes fields to the doctor, fitter and patient in the right order",
+        "E-signature menu to follow requests as Waiting, Signed or All",
+        "Upload signed form flow that supersedes earlier copies and adds a checklist note",
+        "Patient and staff emails that carry no sensitive content, including a new-case alert with only a case number",
+        "PHI-free status record per Case feeding the downstream webhook",
+        "Simulated intake script with dummy data to test the whole flow end to end without real patient data"
+      ],
+      technologies: [
+        "Medplum",
+        "FHIR",
+        "TypeScript",
+        "Medplum Bots",
+        "Documenso",
+        "React",
+        "Node.js",
+        "Strapi",
+        "Shopify",
+        "Webhooks",
+        "Docker Compose",
+        "Google Cloud (Compute Engine)",
+        "Caddy",
+        "GitHub Actions (CI/CD)"
       ]
     }
   ];
